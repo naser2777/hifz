@@ -1,5 +1,5 @@
 /* متابعة الحفظ — يعمل بلا إنترنت بعد أول فتح. غيّر رقم الإصدار عند كل تحديث */
-const V="hifz-v3",RT="hifz-fonts";
+const V="hifz-v4",RT="hifz-fonts";
 const FILES=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./icon-512-maskable.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith("hifz-")&&k!==V&&k!==RT) /* لا تمسح مخازن التطبيقات الأخرى على نفس العنوان */.map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
